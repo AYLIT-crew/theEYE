@@ -44,11 +44,10 @@ while True:
     elif option_number == '3':
         subprocess.call('python domain_harvester.py', shell=True)
     elif option_number == '4':
-        subprocess.call('python mail_harvester/mail_harvester.py', shell=True)
+        subprocess.call('python mail_harvester.py', shell=True)
     elif option_number == '5':
         subprocess.call('python whois.py', shell=True)
     elif option_number == '6':
         break
     else:
         print(cl('Wrong option.', 'red'))
-
