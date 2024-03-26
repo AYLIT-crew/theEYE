@@ -1,4 +1,4 @@
-import requests, os
+import requests, subprocess, socket
 from termcolor import colored as cl
 from pyfiglet import figlet_format as ff
 
@@ -11,14 +11,35 @@ def is_public(ip):
     except:
         return True
 
-os.system('clear')
+def get_ip_from_website(url):
+    cmd = f'ping -c 1 {url}'
+    data = subprocess.check_output(cmd.split()).decode().split('\n')
+    data = data[0].split()[2][1:-1]
+    return data
+
+def is_ip(inp):
+    try:
+        sockets.inet_aton(inp)
+        return True
+    except:
+        return False
+
+subprocess.call('clear', shell=True)
 
 print(cl('='*30, 'red'))
 print(cl(ff('IPInfo'), 'red'))
 print(cl('\t-An IP info provider\n\t-AN AYLIT production', 'red'))
 print(cl('='*30, 'red'))
 
-ip = input(cl('Enter the IP address:', 'yellow'))
+inp = input(cl('Enter the IP address or URL:', 'yellow'))
+
+if is_ip(inp) == False:
+    ip = get_ip_from_website(inp)
+else:
+    ip = inp
+
+print('\n')
+
 if is_public(ip):
     print(cl('-'*10+f'Data for {ip}'+'-'*10, 'blue'))
     print(cl(f"ISP: {data['isp']}", 'blue'))
@@ -28,9 +49,13 @@ if is_public(ip):
     print(cl(f"Region: {data['regionName']}", 'blue'))
     print(cl(f"City: {data['city']}", 'blue'))
     print(cl(f"Timezone: {data['timezone']}", 'blue'))
+else:
+    print(cl('Not a public IP address.', 'red'))
+
+print('\n')
 
 inp = input(cl('Press enter to exit', 'red'))
 if inp == '':
-    os.system('clear')
+    subprocess.call('clear', shell=True)
 else:
-    os.system('clear')
+    subprocess.call('clear', shell=True)
