@@ -51,3 +51,4 @@ while True:
         break
     else:
         print(cl('Wrong option.', 'red'))
+        subprocess.call('clear', shell=True)
