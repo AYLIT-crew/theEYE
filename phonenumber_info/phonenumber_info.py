@@ -33,10 +33,17 @@ def number_type(num):
         return None
 
 subprocess.call('clear', shell=True)
-print(cl('='*47, 'red'))
-print(cl(ff('Phonsint')+'\n\t-A primitive OSINT program for numbers', 'red'))
-print(cl('\t-An AYILT Production', 'red'))
-print(cl('='*47, 'red'))
+print(cl('''
+ ███████████  █████                                   ███              █████   
+░░███░░░░░███░░███                                   ░░░              ░░███    
+ ░███    ░███ ░███████    ██████  ████████    █████  ████  ████████   ███████  
+ ░██████████  ░███░░███  ███░░███░░███░░███  ███░░  ░░███ ░░███░░███ ░░░███░   
+ ░███░░░░░░   ░███ ░███ ░███ ░███ ░███ ░███ ░░█████  ░███  ░███ ░███   ░███    
+ ░███         ░███ ░███ ░███ ░███ ░███ ░███  ░░░░███ ░███  ░███ ░███   ░███ ███
+ █████        ████ █████░░██████  ████ █████ ██████  █████ ████ █████  ░░█████ 
+░░░░░        ░░░░ ░░░░░  ░░░░░░  ░░░░ ░░░░░ ░░░░░░  ░░░░░ ░░░░ ░░░░░    ░░░░░ 
+         ''', 'red'))
+
 no_of_nums = input(cl('Single or Multiple Numbers(S/M):', 'yellow'))
 if no_of_nums == 'S':
     number = input(cl('Enter number:', 'yellow'))
