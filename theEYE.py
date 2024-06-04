@@ -1,6 +1,7 @@
-import subprocess
+import subprocess, os
 from termcolor import colored as cl
 from pyfiglet import figlet_format as ff
+from simple_term_menu import TerminalMenu
 
 subprocess.call('clear', shell=True)
 
@@ -21,34 +22,37 @@ def check_tools():
 check_tools()
 
 while True:
-    print(cl('='*34, 'red'))
-    print(cl(ff('theEYE'), 'red'))
-    print(cl('\t     -An OSINT program', 'red'))
-    print(cl('\t     -An AYLIT production', 'red'))
-    print(cl('='*34, 'red'))
+    print(cl('''
+  █████    █████               ██████████ █████ █████ ██████████
+ ░░███    ░░███               ░░███░░░░░█░░███ ░░███ ░░███░░░░░█
+ ███████   ░███████    ██████  ░███  █ ░  ░░███ ███   ░███  █ ░ 
+░░░███░    ░███░░███  ███░░███ ░██████     ░░█████    ░██████   
+  ░███     ░███ ░███ ░███████  ░███░░█      ░░███     ░███░░█   
+  ░███ ███ ░███ ░███ ░███░░░   ░███ ░   █    ░███     ░███ ░   █
+  ░░█████  ████ █████░░██████  ██████████    █████    ██████████
+   ░░░░░  ░░░░ ░░░░░  ░░░░░░  ░░░░░░░░░░    ░░░░░    ░░░░░░░░░░  
+          '''
+    , 'red'))
 
-    options = ['IP Information', 'Phonenumber Information', 'Domain harvester', 'Email Harvester', 'WHOIS', 'quit']
+    options = ['[1] IP Information', '[2] Phonenumber Information', '[3] Domain harvester', '[4] Email Harvester', '[5] WHOIS', '[-] Quit']
+    menu_highlight_style = ('standout', 'fg_gray', 'bold')
+    terminal_menu = TerminalMenu(options, menu_highlight_style=menu_highlight_style)
+    option_number = terminal_menu.show()
 
-    cnt = 1
-    for i in options:
-        print(cl(f'[{str(cnt)}] {i}', 'red'))
-        cnt += 1
-
-    print('-'*34)
-
-    option_number = input(cl('Enter the option number:', 'yellow'))
-    if option_number == '1':
-        subprocess.call('python ip_info.py', shell=True)
-    elif option_number == '2':
-        subprocess.call('python phonenumber_info/phonenumber_info.py', shell=True)
-    elif option_number == '3':
-        subprocess.call('python domain_harvester.py', shell=True)
-    elif option_number == '4':
-        subprocess.call('python mail_harvester.py', shell=True)
-    elif option_number == '5':
-        subprocess.call('python whois.py', shell=True)
-    elif option_number == '6':
+    if option_number == 0:
+        subprocess.call('python ./ip_info.py', shell=True)
+    elif option_number == 1:
+        subprocess.call('python ./phonenumber_info/phonenumber_info.py', shell=True)
+    elif option_number == 2:
+        subprocess.call('python ./domain_harvester.py', shell=True)
+    elif option_number == 3:
+        subprocess.call('python ./mail_harvester.py', shell=True)
+    elif option_number == 4:
+        subprocess.call('python ./whois.py', shell=True)
+    elif option_number == 5:
         break
     else:
         print(cl('Wrong option.', 'red'))
         subprocess.call('clear', shell=True)
+
+    os.system('clear')
